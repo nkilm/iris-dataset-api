@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api,reqparse
+import pickle
 
 app = Flask(__name__)
 api = Api(app)
@@ -20,6 +21,9 @@ class Iris(Resource):
         return jsonify(prediction.tolist())
 
 api.add_resource(Info, '/')
+api.add_resource(Iris,'/iris')
 
 if __name__ == '__main__':
+    with open("models/iris_lr.pickle","rb") as f:
+        model = pickle.load(f)
     app.run(debug=True,port=5050)
