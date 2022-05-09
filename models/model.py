@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from joblib import dump,load
+import pickle
 
 iris = datasets.load_iris()
 
@@ -21,3 +21,5 @@ print(predicted_values)
 print(accuracy)
 # Save the model as a pickle in a file
 # dump(clf, 'iris_lr.pickle')
+filename = 'iris_lr.sav'
+pickle.dump(clf, open(filename, 'wb'))
