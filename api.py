@@ -3,6 +3,7 @@ from flask_restful import Resource, Api,reqparse
 import pickle
 import json
 import numpy as np
+import constants as const
 
 
 app = Flask(__name__)
@@ -31,4 +32,4 @@ api.add_resource(Iris,'/iris')
 if __name__ == '__main__':
     with open("models/iris_lr.sav","rb") as f:
         model = pickle.load(f)
-    app.run(debug=True,port=5050)
+    app.run(debug=True,port=const.PORT)
