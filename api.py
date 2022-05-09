@@ -13,18 +13,26 @@ api = Api(app)
 parser = reqparse.RequestParser()
 parser.add_argument('data')
 
+info = {
+    0:"Iris-Setosa",
+    1:"Iris-Versicolour",
+    2:"Iris-Virginica"
+}
 class Info(Resource):
     def get(self):
         return jsonify({"/info":"An example for ML Model API(Iris Dataset)"})
-
 class Iris(Resource):
     def get(self):
-        return "Iris Dataset"
+        return jsonify(info)
     def post(self):
         args = parser.parse_args()
-        X = np.array(json.loads(args['data']))
+        values =  json.loads(args['data'])
+
+        X = np.array(values).reshape(1,-1)
         prediction = model.predict(X)
-        return jsonify(prediction.tolist())
+        
+        return jsonify(info.get(prediction[0]))
+
 
 api.add_resource(Info, '/')
 api.add_resource(Iris,'/iris')
