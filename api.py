@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Resource, Api,reqparse
+from flask_cors import CORS
 import pickle
 import json
 import numpy as np
@@ -8,6 +9,7 @@ import constants as const
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 # Create parser for the payload data
 parser = reqparse.RequestParser()
