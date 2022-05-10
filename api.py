@@ -20,7 +20,7 @@ info = {
 }
 class Info(Resource):
     def get(self):
-        return jsonify({"/info":"An example for ML Model API(Iris Dataset)"})
+        return jsonify({"/":"An example for ML Model API(Iris Dataset)"})
 class Iris(Resource):
     def get(self):
         return jsonify(info)
@@ -41,3 +41,4 @@ if __name__ == '__main__':
     with open("models/iris_lr.sav","rb") as f:
         model = pickle.load(f)
     app.run(debug=True,port=const.PORT)
+    
